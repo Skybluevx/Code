@@ -1,8 +1,9 @@
-import tqdm
-import time
+from other import jingdutiao
 
 
-print("加载中...")
-for i in tqdm(range(100), ncols=30):
-    time.sleep(0.02)
-    print
+def main():
+    jingdutiao.jingdutiao()
+
+
+if __name__ == "__main__":
+    main()
