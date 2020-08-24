@@ -1,7 +1,14 @@
 from other import jingdutiao
 
 
+def hello():
+
+    print("小安：欢迎进入小智能")
+
+
 def main():
+
+    # 显示加载进度条
     jingdutiao.jingdutiao()
 
 
