@@ -50,6 +50,6 @@ class Draw(object):
             t.fd(200)
             t.left(170)
             if abs(t.pos()):
-                break()
+                break
         t.end_fill()
         t.done()
