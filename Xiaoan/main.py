@@ -1,4 +1,5 @@
 from other import jingdutiao
+from draw import draw
 
 
 def hello():
