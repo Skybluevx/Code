@@ -3,6 +3,11 @@ import turtle as t
 
 class Draw(object):
 
+    def __init__(self):
+
+        # 初始化菜单字典
+        self.menu_dict = {}
+
     @staticmethod
     def cc():
         # 定义画板还原
@@ -178,3 +183,21 @@ class Draw(object):
     def xian(self):
         self.cc()
         t.fd(200)
+
+    def menu(self):
+
+        self.menu_dict = {
+            "正方形": self.zfx(),
+            "三角形": self.sjx(),
+            "无角正方形": self.wjzfx(),
+            "太阳花": self.tyh(),
+            "五角星": self.wjx(),
+            "六角形": self.ljx(),
+            "叠加等边三角形": self.djdbsjx(),
+            "圆": self.yuan(),
+            "靶盘": self.bp(),
+            "正方形螺旋线": self.zfxlxx(),
+            "田字格": self.tzg(),
+            "蟒蛇": self.ms(),
+            "直线": self.xian(),
+        }

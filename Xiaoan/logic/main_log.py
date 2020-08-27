@@ -42,12 +42,12 @@ class MainLogic(object):
             "删除所有记忆": self.delete_all()
         }
 
-    def run(self):
-
-        # 用于测试本文件的方法
-        self.nowtime()
-
-
-if __name__ == '__main__':
-    log = MainLogic()
-    log.run()
+#     def run(self):
+#
+#         # 用于测试本文件的方法
+#         self.nowtime()
+#
+#
+# if __name__ == '__main__':
+#     log = MainLogic()
+#     log.run()
