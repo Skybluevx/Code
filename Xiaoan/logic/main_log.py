@@ -8,7 +8,7 @@ class MainLogic(object):
     def __init__(self):
 
         # 打开nc.txt文件
-        with open("data/nc.txt", 'r+', encoding="gbk") as f:
+        with open("../data/nc.txt", 'r+', encoding="gbk") as f:
             line = f.read()
             self.x = eval(line)
         print("小安:欢迎进入小智能")
@@ -16,14 +16,13 @@ class MainLogic(object):
         print(f"小安:你好,{c}")
 
         # 初始化菜单字典
-        self.menu_dict = {}
+        self.menu_dic = {}
         self.menu = {}
 
         # 初始化draw.py
         self.draw = draw.Draw()
 
     def nowtime(self):
-
         return f"现在的时间是{datetime.now()}"
 
     def delete_all(self):
@@ -47,13 +46,12 @@ class MainLogic(object):
         return res
 
     def menu(self):
-        self.menu_dict = {
-            "现在时间": self.nowtime(),
-            "删除所有记忆": self.delete_all()
-        }
+            self.menu_dic["现在时间"] =  self.nowtime,
+            self.menu_dic["删除所有记忆"] = self.delete_all
+
 
         # 将绘图的菜单加入到主菜单中
-        self.menu_dict = self._merge(self.menu_dict, self.draw.menu_dict)
+        # self.menu_dict = self._merge(self.menu_dict, self.draw.menu_dict)
 
     def run(self):
 
@@ -66,8 +64,13 @@ class MainLogic(object):
             if instruction in quit:
                 break
 
-            print(self.menu_dict["现在时间"], self.draw.menu_dict)
+            # 创建菜单
+            self.menu()
 
-# if __name__ == '__main__':
-#     log = MainLogic()
-#     log.run()
+            # print(self.menu_dict["现在时间"](), self.draw.menu_dict)
+            self.menu_dic["现在时间"]()
+
+
+if __name__ == '__main__':
+    log = MainLogic()
+    log.run()

@@ -1,5 +1,8 @@
+def po():
+    print(123)
+
 o = {
-    "w": 1,
+    "w": po,
 }
 
 p = {
@@ -7,4 +10,4 @@ p = {
 }
 q = list(p)
 # q = dict(o.items() + p.items())
-print(o.keys())
+o["w"]()
