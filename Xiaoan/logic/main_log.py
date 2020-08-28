@@ -15,15 +15,17 @@ class MainLogic(object):
         c = self.x["你的名字"]
         print(f"小安:你好,{c}")
 
-        # 初始化菜单字典
+        # 创建菜单字典
+        self.menu_logic = {}
+
+        # 初始化子菜单
         self.menu_dic = {}
-        self.menu = {}
 
         # 初始化draw.py
         self.draw = draw.Draw()
 
     def nowtime(self):
-        return f"现在的时间是{datetime.now()}"
+        print(f"现在的时间是{datetime.now()}")
 
     def delete_all(self):
         # 删除数据文件中的所有字典
@@ -46,12 +48,15 @@ class MainLogic(object):
         return res
 
     def menu(self):
-        self.menu_dic["现在时间"] = self.nowtime,
-        self.menu_dic["删除所有记忆"] = self.delete_all
-
+        """
+        这里用于创建主要逻辑的菜单以及总菜单，在主要逻辑中添加方法后请务必在此添加菜单
+        以及总菜单添加子菜单
+        """
+        self.menu_logic["现在时间"] = self.nowtime,
+        self.menu_logic["删除所有记忆"] = self.delete_all
 
         # 将绘图的菜单加入到主菜单中
-        # self.menu_dict = self._merge(self.menu_dict, self.draw.menu_dict)
+        self.menu_dic = self._merge(self.menu_logic, self.draw.menu_dict)
 
     def run(self):
 
@@ -60,15 +65,14 @@ class MainLogic(object):
 
             instruction = input("请输入指令：")
 
+            # 程序退出
             quit = ["0", '退出程序', '退出', '退出小安', '小安退出', '小安退出程序']
             if instruction in quit:
                 break
 
-            # 创建菜单
+            # 生成菜单
             self.menu()
-
-            # print(self.menu_dict["现在时间"](), self.draw.menu_dict)
-            self.menu_dic["现在时间"]()
+            # print(self.menu_dic.keys())
 
 
 if __name__ == '__main__':
