@@ -46,8 +46,8 @@ class MainLogic(object):
         return res
 
     def menu(self):
-            self.menu_dic["现在时间"] =  self.nowtime,
-            self.menu_dic["删除所有记忆"] = self.delete_all
+        self.menu_dic["现在时间"] = self.nowtime,
+        self.menu_dic["删除所有记忆"] = self.delete_all
 
 
         # 将绘图的菜单加入到主菜单中
