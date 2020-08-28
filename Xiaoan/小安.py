@@ -21,12 +21,12 @@ from PIL import ImageEnhance
 key = '1f136301d56d4df482527d838f862573'
 
 def cc () : #定义画板还原
-    clear ()
-    pensize (4)
-    pencolor ("black")
-    penup ()
-    goto (0,0)
-    pendown ()
+    clear()
+    pensize(4)
+    pencolor("black")
+    penup()
+    goto(0,0)
+    pendown()
 
 def zfx () :    #定义画正方形
     cc ()
@@ -1095,6 +1095,34 @@ while 1==1 :
                         print("小安:输入错误")
             else:
                 print("小安:输入错误,请重新输入")
+    elif y == '运气测试':
+        print("小安:欢迎进入")
+        while True:
+            sls = 1
+            try:
+                yc = int(input("小安:请输入一个数字,需在1~20之间,输入“101”退出\n我:"))
+            except:
+                print("小安:请输入数字")
+            if yc == 101:
+                print("小安:退出")
+                break
+            while True:
+                    yc_2 = randint(1,20)
+                    if yc < 0 or yc >20:
+                        print("小安:输入错误")
+                        break
+                    if yc != yc_2:
+                        sls +=1
+                    else:
+                        print("小安:你所输入的数字用了{}次中了".format(sls))
+                        if sls < 20:
+                            print("小安:你本次的运气贼好")
+                        elif 21 > sls < 50:
+                            print("小安:你本次的运气一般")
+                        else:
+                            print("小安:你本次的运气不够好")
+                        sls = 1
+                        break
     else:
         print("小安:emmm,我无法回答")#机器人学习
         print("小安:是否需要我学习?")
