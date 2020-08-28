@@ -18,9 +18,6 @@ class MainLogic(object):
         # 创建菜单字典
         self.menu_logic = {}
 
-        # 初始化子菜单
-        self.menu_dic = {}
-
         # 初始化draw.py
         self.draw = draw.Draw()
 
@@ -47,32 +44,48 @@ class MainLogic(object):
         res = {**menu_1, **menu_2}
         return res
 
+    def print_menu(self):
+        """
+        创建菜单并输出
+        """
+        menu_dict = self.menu()
+        print("   |")
+        for key in menu_dict.keys():
+            print(f"   |--[{key}]")
+
     def menu(self):
         """
         这里用于创建主要逻辑的菜单以及总菜单，在主要逻辑中添加方法后请务必在此添加菜单
-        以及总菜单添加子菜单
         """
+        self.menu_logic["菜单"] = self.print_menu,
         self.menu_logic["现在时间"] = self.nowtime,
         self.menu_logic["删除所有记忆"] = self.delete_all
 
-        # 将绘图的菜单加入到主菜单中
-        self.menu_dic = self._merge(self.menu_logic, self.draw.menu_dict)
+        """
+        在其他文件创建其他功能时请记得在此将相关功能的菜单添加至总菜单中
+        """
+        menu_dic = self._merge(self.menu_logic, self.draw.menu_dict)
+
+        return menu_dic
 
     def run(self):
 
         while True:
             # 主循环
 
-            instruction = input("请输入指令：")
+            ins = input("请输入指令：")
 
             # 程序退出
             quit = ["0", '退出程序', '退出', '退出小安', '小安退出', '小安退出程序']
-            if instruction in quit:
+            if ins in quit:
                 break
 
-            # 生成菜单
-            self.menu()
-            # print(self.menu_dic.keys())
+            # 执行方法
+            menu_dict = self.menu()
+            try:
+                menu_dict[ins]()
+            except KeyError:
+                print("指令输入有误/暂无此指令，请输入[菜单]获取菜单栏。")
 
 
 if __name__ == '__main__':

@@ -14,4 +14,5 @@ p = {
 q = list(p)
 # q = dict(o.items() + p.items())
 di()
-o["w"]()
+i = input("请输入：")
+o[i]()
