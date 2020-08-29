@@ -3,7 +3,7 @@ import requests
 from datetime import *
 from time import *
 from turtle import *
-from math import *
+from calculation import *
 from random import *
 from playsound import *
 from tqdm import *

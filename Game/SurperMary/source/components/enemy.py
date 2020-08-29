@@ -1,6 +1,6 @@
 __author__ = 'marble_xu'
 
-import math
+import calculation
 import pygame as pg
 from .. import setup, tools
 from .. import constants as c
@@ -502,6 +502,6 @@ class FireStick(pg.sprite.Sprite):
         self.angle += 1
         if self.angle == 360:
             self.angle = 0
-        radian = math.radians(self.angle)
-        self.rect.x = self.center_x + math.sin(radian) * self.radius
-        self.rect.y = self.center_y + math.cos(radian) * self.radius
+        radian = calculation.radians(self.angle)
+        self.rect.x = self.center_x + calculation.sin(radian) * self.radius
+        self.rect.y = self.center_y + calculation.cos(radian) * self.radius
