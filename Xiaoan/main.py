@@ -10,7 +10,7 @@ def hello():
 def main():
 
     # 显示加载进度条
-    # jingdutiao.jingdutiao()
+    jingdutiao.jingdutiao()
 
     # 加载主要逻辑
     log = main_log.MainLogic()

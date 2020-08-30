@@ -1,21 +1,17 @@
-import time
-from datetime import datetime
 import draw
 import calculation
 import mini_game
+import translation
+import ai_chat
+import caesar
+import luck_test
+import customize_QA
 
 
 class MainLogic(object):
 
     def __init__(self):
-
-        # 打开nc.txt文件
-        with open("../data/nc.txt", 'r+', encoding="gbk") as f:
-            line = f.read()
-            self.x = eval(line)
         print("小安:欢迎进入小智能")
-        c = self.x["你的名字"]
-        print(f"小安:你好,{c}")
 
         # 创建菜单字典
         self.menu_logic = {}
@@ -24,24 +20,11 @@ class MainLogic(object):
         self.draw = draw.Draw()
         self.mini_game = mini_game.MiniGame()
         self.calculation = calculation.Math()
-
-    def nowtime(self):
-        print(f"现在的时间是{datetime.now()}")
-
-    def delete_all(self):
-        # 删除数据文件中的所有字典
-        result = input("请输入“确认”来确认本次操作，否则请输入“否”")
-        if result == "确认":
-            print("小安正在删除记忆中...")
-            for i in range(101):
-                print("\r{:3}%".format(i), end='')
-                time.sleep(0.05)
-            print("删除完毕...")
-
-            with open("nc.txt", "w") as f:
-                pass
-        if result == "否":
-            print("本次操作取消...")
+        self.translate = translation.Translation()
+        self.ai_chat = ai_chat.AiChat()
+        self.caesar = caesar.Caesar()
+        self.luck_test = luck_test.LuckTest()
+        self.customize_QA = customize_QA.CustomizeQA()
 
     @staticmethod
     def _merge(menu_1, menu_2):
@@ -73,9 +56,7 @@ class MainLogic(object):
         那个地方，而直接在菜单字典中添加就不行，从而导致了其他功能菜单制作的时候需要将每个
         方法放入列表中。
         """
-        self.menu_logic["1"] = self.print_menu,
-        self.menu_logic["现在时间"] = self.nowtime,
-        self.menu_logic["删除所有记忆"] = self.delete_all
+        self.menu_logic["菜单"] = self.print_menu,
 
         """
         在其他文件创建其他功能时请记得在此将相关功能的菜单添加至总菜单中
@@ -83,6 +64,11 @@ class MainLogic(object):
         menu_dic = self._merge(self.menu_logic, self.draw.menu_dict)
         menu_dic = self._merge(menu_dic, self.mini_game.menu_dict)
         menu_dic = self._merge(menu_dic, self.calculation.menu_dict)
+        menu_dic = self._merge(menu_dic, self.translate.menu_dict)
+        menu_dic = self._merge(menu_dic, self.ai_chat.menu_dict)
+        menu_dic = self._merge(menu_dic, self.caesar.menu_dict)
+        menu_dic = self._merge(menu_dic, self.luck_test.menu_dict)
+        menu_dic = self._merge(menu_dic, self.customize_QA.menu_dict)
 
         return menu_dic
 

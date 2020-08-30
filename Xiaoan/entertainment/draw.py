@@ -20,6 +20,7 @@ class Draw(object):
             "田字格": [self.tzg],
             "蟒蛇": [self.ms],
             "直线": [self.xian],
+            "画板": [self.huaban],
         }
 
     @staticmethod
@@ -197,3 +198,63 @@ class Draw(object):
     def xian(self):
         self.cc()
         t.fd(200)
+
+    # 画板
+    def huaban(self):
+        while True:
+            print("小安:请输入画笔大小,输入help查看功能")
+            hbaz = input("我:")
+            if hbaz == 'help':
+                print(
+                    "小安:1.向右\n2.向左\n3.向前\n4.抬笔\n5.落笔\n6.清空\n7.画笔颜色\n8.到达坐标\n9.画圆\n10.背景颜色\n11.角度")
+            else:
+                t.pensize(int(hbaz))
+                break
+        while True:
+            print("小安:请输入画笔的运动,输入“退出”退出")
+            hb = input("我:")
+            if hb == '向右':
+                print("小安:请输入移动像素")
+                hby = int(input("我:"))
+                t.right(hby)
+            elif hb == '向左':
+                print("小安:请输入移动像素")
+                hbz = int(input("我:"))
+                t.left(hbz)
+            elif hb == '向前':
+                print("小安:请输入移动像素")
+                hbq = int(input("我:"))
+                t.fd(hbq)
+            elif hb == '抬笔':
+                t.penup()
+            elif hb == '落笔':
+                t.pendown()
+            elif hb == '清空':
+                self.cc()
+            elif hb == '画笔颜色':
+                print("小安:请输入画笔颜色,仅限英文\n如:red(红色),green(绿色),black(黑色),yellow(黄色),white(白色),grey(灰色),darkgreen(深绿色),gold(金色),violet(紫罗兰),purple(紫色)")
+                hbys = input("我:")
+                t.pencolor(hbys)
+            elif hb == '退出':
+                print("小安:退出")
+                break
+            elif hb == '到达坐标':
+                print("小安:请输入第一个数字")
+                hbzb = int(input("我:"))
+                print("小安:请输入第二个数字")
+                hbzb_2 = int(input("我:"))
+                t.goto(hbzb, hbzb_2)
+            elif hb == '画圆':
+                print("小安:请输入圆的半径")
+                hbyuan = input("我:")
+                t.circle(int(hbyuan))
+            elif hb == '背景颜色':
+                windowe = t.Screen()
+                print("小安:请输入背景颜色,仅限英文\n如:red(红色),green(绿色),black(黑色),yellow(黄色),white(白色),grey(灰色),darkgreen(深绿色),gold(金色),violet(紫罗兰),purple(紫色)")
+                hbbj = input("我:")
+                windowe.bgcolor(hbbj)
+            elif hb == '角度':
+                hbjd = int(input())
+                t.seth(hbjd)
+            else:
+                print("输入错误")
