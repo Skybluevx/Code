@@ -25,5 +25,8 @@ class Solution(object):
         """
         for i, num in enumerate(nums):
             if (target - num) in nums[i+1:]:
-                return [i, nums.index((target - num))]
+                return [i, nums[i+1:].index((target - num)) + (len(nums) - len(nums[i+1:]))]
 # leetcode submit region end(Prohibit modification and deletion)
+
+so = Solution()
+print(so.twoSum([3, 3], 6))
