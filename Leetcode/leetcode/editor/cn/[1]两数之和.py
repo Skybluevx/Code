@@ -16,16 +16,28 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+# 方法1
+# class Solution(object):
+#     def twoSum(self, nums, target):
+#         """
+#         :type nums: List[int]
+#         :type target: int
+#         :rtype: List[int]
+#         """
+#         for i, num in enumerate(nums):
+#             if (target - num) in nums[i+1:]:
+#                 return [i, nums[i+1:].index((target - num)) + (len(nums) - len(nums[i+1:]))]
+
+# 方法2
 class Solution(object):
     def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
+        nums_dict = {}
+        for a, num in enumerate(nums):
+            nums_dict[num] = a
         for i, num in enumerate(nums):
-            if (target - num) in nums[i+1:]:
-                return [i, nums[i+1:].index((target - num)) + (len(nums) - len(nums[i+1:]))]
+            j = nums_dict.get(target - num)
+            if j is not None and j != i:
+                return [i, j]
 # leetcode submit region end(Prohibit modification and deletion)
 
 so = Solution()
