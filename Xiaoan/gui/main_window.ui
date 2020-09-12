@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>344</width>
+    <height>345</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>主窗口</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>191</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="cursor">
+        <cursorShape>CrossCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>我的</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="text">
+        <string>对</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBox_2">
+       <property name="text">
+        <string>错</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QToolButton" name="toolButton">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>230</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>不是</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>344</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>toolButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>90</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>163</x>
+     <y>251</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>228</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>140</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
