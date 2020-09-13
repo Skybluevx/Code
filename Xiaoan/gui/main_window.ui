@@ -79,34 +79,18 @@
  <resources/>
  <connections>
   <connection>
-   <sender>toolButton</sender>
-   <signal>clicked()</signal>
-   <receiver>toolButton</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>90</x>
-     <y>275</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>163</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
-   <receiver>pushButton</receiver>
-   <slot>click()</slot>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>228</x>
-     <y>88</y>
+     <x>171</x>
+     <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>140</x>
-     <y>92</y>
+     <x>277</x>
+     <y>45</y>
     </hint>
    </hints>
   </connection>

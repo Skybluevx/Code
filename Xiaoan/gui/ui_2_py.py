@@ -1,19 +1,33 @@
 import os
 import os.path
 
+# UI文件所在的路径
+dirname = './'
 
-def ui_2_py(ui_file_name):
-    file_names = os.listdir("./")
-
-    if ui_file_name not in file_names:
-        print("文件名错误或文件不存在，请重新检查！")
-        return
-
-    abs_ui_file_path = os.path.abspath(ui_file_name)
-    py_file = ui_file_name.split(".")[0] + ".py"
-    cmd = f"pyuic5 -o {py_file} {ui_file_name}"
-    os.system(cmd)
+# 列出目录下的所有UI文件
 
 
-if __name__ == "__main__":
-    ui_2_py("untitled.ui")
+def listUiFile():
+    List = []
+    files = os.listdir(dirname)
+    for filename in files:
+        if os.path.splitext(filename)[1] == '.ui':
+            List.append(filename)
+    return List
+
+
+def transPyFile(filename):
+    return os.path.splitext(filename)[0] + '.py'
+
+
+def runMain():
+    List = listUiFile()
+    for uifile in List:
+        pyfile = transPyFile(uifile)
+        cmd = 'pyuic5 -o {pyfile} {uifile}'.format(
+            pyfile=pyfile, uifile=uifile)
+        os.system(cmd)
+
+
+if __name__ == '__main__':
+    runMain()
