@@ -1,11 +1,6 @@
-import draw
-import calculation
-import mini_game
-import translation
-import ai_chat
-import caesar
-import luck_test
-import customize_QA
+from entertainment import draw, luck_test, mini_game, ai_chat
+from study import calculation, customize_QA, translation
+from other import caesar
 
 
 class MainLogic(object):

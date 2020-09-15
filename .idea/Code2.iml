@@ -11,8 +11,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/study" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/life" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/SurperMary/source" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Xiaoan/gui" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (Pycharm.soure)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (Code)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
