@@ -11,7 +11,7 @@ class CustomizeQA(object):
         }
 
         # 打开nc.txt文件
-        with open("../data/nc.txt", 'r+', encoding="gbk") as f:
+        with open(r"../data/nc.txt", 'r+', encoding="gbk", errors="ignore") as f:
             line = f.read()
             self.x = eval(line)
 
