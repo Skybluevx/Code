@@ -1,5 +1,5 @@
 from other import jingdutiao
-from logic import main_log
+import main_log
 
 
 def hello():
