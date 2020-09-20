@@ -11,7 +11,7 @@ class Example(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.setGeometry(300, 300, 100, 700)
+        self.setGeometry(300, 300, 1000, 700)
         self.setWindowTitle("消息对话框")
 
         self.la = QLabel("这里会显示我们选择的按钮信息", self)
@@ -33,20 +33,60 @@ class Example(QWidget):
         self.bt_1.clicked.connect(self.info)
         self.bt_2.clicked.connect(self.question)
         self.bt_3.clicked.connect(self.waring)
+        self.bt_4.clicked.connect(self.critical)
+        self.bt_5.clicked.connect(self.about)
+        self.bt_6.clicked.connect(self.aboutqt)
+
+        self.show()
+
+    def critical(self):
+        msgbox = QMessageBox()
+        msgbox.setWindowTitle("错误")
+        msgbox.setIcon(QMessageBox.Critical)
+        msgbox.setText("这是一个错误消息对话框")
+        msgbox.setStandardButtons(
+            QMessageBox.Retry | QMessageBox.Abort | QMessageBox.Ignore)
+        msgbox.setDefaultButton(QMessageBox.Retry)
+        msgbox.setDetailedText("这是详细信息：学点编程吧")
+        reply = msgbox.exec()
+
+        if reply == QMessageBox.Retry:
+            self.la.setText("你选择了Retry！")
+        elif reply == QMessageBox.Abort:
+            self.la.setText("你选择了Abort！")
+        else:
+            self.la.setText("你选择了Ignore！")
 
     def waring(self):
+
+        # 复选框
         cb = QCheckBox("所有文档都按此操作")
+
+        # 新建一个消息框
         msgbox = QMessageBox()
+
+        # 对消息框进行设置
         msgbox.setWindowTitle("警告")
+        # 将消息框的图标换为警告图标
         msgbox.setIcon(QMessageBox.Warning)
         msgbox.setText("这是一个警告消息对话框")
         msgbox.setInformativeText("出现更改愿意保存吗？")
+
+        # 新建三个按钮
         save = msgbox.addButton("保存", QMessageBox.AcceptRole)
         nosave = msgbox.addButton("取消", QMessageBox.RejectRole)
         cancel = msgbox.addButton("不保存", QMessageBox.DestructiveRole)
+
+        # 设置消息框的默认按钮
         msgbox.setDefaultButton(save)
+
+        # 设置之前建立的那个复选框
         msgbox.setCheckBox(cb)
+
+        # 链接槽函数
         cb.stateChanged.connect(self.check)
+
+        # 这行这个语句让消息对话框能够显示出来，并将我们选中的按钮返回给reply这个变量。
         reply = msgbox.exec()
 
         if reply == QMessageBox.Retry:
