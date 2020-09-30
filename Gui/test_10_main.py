@@ -34,15 +34,17 @@ class Example(QWidget):
     def showDialog(self):
         sender = self.sender()
         if sender == self.bt1:
-            text, ok = QInputDialog.getText(self, "密码输入框", "请输入密码", QLineEdit.Password)
+            text, ok = QInputDialog.getText(
+                self, "密码输入框", "请输入密码", QLineEdit.Password)
             if ok:
                 self.lb1.setText(text)
         elif sender == self.bt2:
-            text, ok = QInputDialog.getText(self, "密码输入框", "请输入密码", QLineEdit.PasswordEchoOnEdit)
+            text, ok = QInputDialog.getText(
+                self, "密码输入框", "请输入密码", QLineEdit.PasswordEchoOnEdit)
             if ok:
                 self.lb1.setText(text)
         else:
-            pwd = PassDialog()
+            pwd = PasswdDialog()
             r = pwd.exec_()
             if r:
                 self.lb1.setText(pwd.text)
