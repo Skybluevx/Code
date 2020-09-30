@@ -8,9 +8,10 @@ cur = conn.cursor()
 # data = (1, "aqq", 20)
 # cur.execute(f"insert into test2 values {data}")
 # cur.execute("insert into test2 values (?,?,?)", (5, "leno", 22))
-cur.execute("select * from test2 where id=2")
+cur.execute("select age from test2")
 for i in cur:
-    print(i[0], i[1], i[2])
+    print(i[0])
+
 
 conn.commit()
 cur.close()
