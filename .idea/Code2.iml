@@ -12,6 +12,12 @@
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/life" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/SurperMary/source" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/gui" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/dateutil" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/numpy" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/numpy-1.19.2.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/pandas" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/pandas-1.1.3.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/python_dateutil-2.8.1.dist-info" />
       <excludeFolder url="file://$MODULE_DIR$/Workplace" />
       <excludeFolder url="file://$MODULE_DIR$/java" />
     </content>
