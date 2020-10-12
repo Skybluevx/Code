@@ -25,8 +25,7 @@ class CustomizeQA(object):
 
     # 结束的时候关闭数据库的链接
     def __del__(self):
-        self.cur.close()
-        self.conn.close()
+        pass
 
     @staticmethod
     def nowtime():
@@ -61,6 +60,7 @@ class CustomizeQA(object):
             elif '删除所有记忆' == y:  # 删除字典
                 self.cur.execute("DROP TABLE q_a")
                 self.conn.commit()
+                break
             elif '删除问题' == y:  # 删除字典中的一个键对值
                 y_3 = input("小安:你确定吗")
                 if '是' in y_3:
@@ -100,6 +100,8 @@ class CustomizeQA(object):
                     else:
                         print("小安:请回答我的问题,是否需要我学习")
                         s = input("我:")
+        self.cur.close()
+        self.conn.close()
 
 
 if __name__ == '__main__':
