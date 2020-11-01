@@ -12,7 +12,6 @@
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/life" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/SurperMary/source" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/gui" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/WebProject/DjangoProject/mysite" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WebProject/DjangoProject/mysite/booktest" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/dateutil" />
       <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/numpy" />
@@ -31,5 +30,8 @@
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
     <option name="renderExternalDocumentation" value="true" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
   </component>
 </module>
