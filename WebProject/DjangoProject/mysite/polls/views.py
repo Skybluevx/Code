@@ -20,8 +20,10 @@ def detail(request, question_id):
     return render(request, "polls/index.html", {"question": question})
 
 
-def result(request, question_id):
-    return HttpResponse(f"你正在看第{question_id}个问题的结果")
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question': question})
+# TODO 点击投票无法重复投
 
 
 def vote(request, question_id):
@@ -36,4 +38,4 @@ def vote(request, question_id):
     else:
         selected_choice.vote += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse("polls/results", args=(question.id,)))
+        return HttpResponseRedirect(reverse('polls/results', args=(question.id,)))
