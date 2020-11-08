@@ -2,28 +2,30 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.urls import reverse
+from django.views import generic
 
 from .models import Question, Choice
 
 
 # Create your views here.
 
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = "latest_question_list"
 
-def index(request):
-    latest_question_list = Question.objects.order_by("-pub_data")[:5]
-    context = {"latest_question_list": latest_question_list}
-    return render(request, "polls/index.html", context=context)
-
-
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "polls/index.html", {"question": question})
+    def get_queryset(self):
+        """返回最近5个问题"""
+        return Question.objects.order_by("-pub_data")[:5]
 
 
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/results.html', {'question': question})
-# TODO 点击投票无法重复投
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = "polls/detail.html"
+
+
+class ResultView(generic.DetailView):
+    model = Question
+    template_name = "polls/results.html"
 
 
 def vote(request, question_id):
