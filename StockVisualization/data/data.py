@@ -6,7 +6,7 @@ import sqlite3
 import tushare
 
 
-TOKEN = "59e9f1e90c209a64712527ef752795b9929028c07398611d69bf49e1"
+TOKEN = ""
 
 
 class BasicData(object):
