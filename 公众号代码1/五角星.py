@@ -1,13 +1,22 @@
-#参考来源：https://blog.csdn.net/weixin_44523387/article/details/94555249
-
+"""
+    绘制五角星
+"""
+# 导入 turtle 库
 import turtle
-import time
+
+# 设置画笔的粗细
 turtle.pensize(5)
-turtle.color("brown","red")
+# 设置画笔颜色,第一个为画笔的颜色,第二个位要填充的颜色
+turtle.color("brown", "red")
+# 在绘制要填充的形状之前要调用
 turtle.begin_fill()
+# 因为要画五条边,所以循环五次
 for i in range(5):
+    # 画笔向前走200
     turtle.forward(200)
+    # 画笔右转144度
     turtle.right(144)
-    turtle.end_fill()
-    time.sleep(2)
+# 结束填充
+turtle.end_fill()
+# 作为一个 turtle 程序的结束语句,否则会出现画完图后直接闪退的情况
 turtle.mainloop()
