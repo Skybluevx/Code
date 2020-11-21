@@ -18,5 +18,5 @@ for i in range(5):
     turtle.right(144)
 # 结束填充
 turtle.end_fill()
-# 作为一个 turtle 程序的结束语句,否则会出现画完图后直接闪退的情况
+# 作为一个 turtle 程序的结束语句,如果不加会出现画完图后直接闪退的情况
 turtle.mainloop()
