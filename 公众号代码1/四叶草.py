@@ -1,28 +1,46 @@
-#参考来源：https://blog.csdn.net/wx601056818/article/details/86423331
+"""
+    四叶草
+"""
 import turtle
-import time
-turtle.setup(650.,350,200,200)
+
+
+# 设置主窗口的大小和位置
+turtle.setup(1000, 1000, 200, 200)
+# 设置画笔下落, 即准备开始绘制图案
 turtle.pendown()
+# 设置画笔的大小
 turtle.pensize(10)
+# 设置画笔的颜色
 turtle.pencolor('green')
- 
-#四叶草
-def draw_clover(radius,rotate):            #参数radius控制叶子的大小,rotate控制叶子的旋转
+
+
+def draw_clover(radius, rotate):  # 参数radius控制叶子的大小,rotate控制叶子的旋转
+    # 绘制四片叶子, 四个循环
     for i in range(4):
-        direction = i*90
-        turtle.seth(60+direction+rotate)   #控制叶子根部的角度为60度
-        # turtle.fd(2*radius*pow(2,1/2))   #控制叶子根部的角度为90度
-        turtle.fd(4*radius)
+        # 设置每个叶子之间相隔的角度
+        direction = i * 90
+        # 设置画笔的角度, 即设置每一片叶子的角度
+        turtle.seth(60 + direction + rotate)
+        # 画笔前进指定的距离
+        turtle.fd(4 * radius)
+
+        # 两个循环用来绘制叶子的边缘
         for j in range(2):
-             turtle.seth(90+direction+rotate)
-             turtle.circle(radius,180)
-        turtle.seth(-60+direction+rotate)
-        turtle.fd(4*radius)
+            # 设置画笔角度, 即将准备绘制叶子边缘
+            turtle.seth(90 + direction + rotate)
+            # 绘制半圆
+            turtle.circle(radius, 180)
+
+        # 绘制画笔回来的角度
+        turtle.seth(-60 + direction + rotate)
+        # 画笔前进指定距离
+        turtle.fd(4 * radius)
+
+    # 设置画笔朝向位向下
     turtle.seth(-90)
-    turtle.fd(6*radius)
- 
-draw_clover(30,45)
-time.sleep(5)
- 
- 
- 
+    # 前进指定距离
+    turtle.fd(6 * radius)
+
+
+draw_clover(50, 45)
+turtle.mainloop()
