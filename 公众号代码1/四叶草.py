@@ -36,7 +36,7 @@ def draw_clover(radius, rotate):  # 参数radius控制叶子的大小,rotate控�
         # 画笔前进指定距离
         turtle.fd(4 * radius)
 
-    # 设置画笔朝向位向下
+    # 设置画笔朝向为向下
     turtle.seth(-90)
     # 前进指定距离
     turtle.fd(6 * radius)
