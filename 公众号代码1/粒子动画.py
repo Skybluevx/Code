@@ -6,9 +6,10 @@ import math
 import random
 py.init()
 mysize = width, height = 800, 600
+# 设置窗口大小
 screen = py.display.set_mode(mysize)
 fullscreen = True  # 全屏开关
-py.display.set_caption("游戏测试")
+py.display.set_caption("粒子动画")
 
 
 class Point:
@@ -18,14 +19,13 @@ class Point:
     position = [0, 0]
     size = 1
 
-    def __init__(self, position, speed, direction, size):
+    def __init__(self, position, speed, direction, size):  # 坐标，速度，方向，点大小
         self.position = position
         self.speed = speed
         self.direction = direction
         self.size = size
-        return  # 坐标，速度，方向，点大小
 
-    def run(self,):
+    def run(self):
         if self.position[0] <= 0 or self.position[0] >= width:
             self.direction = -self.direction + math.pi
         if self.position[1] <= 0 or self.position[1] >= height:
@@ -93,7 +93,7 @@ class Graph:
                     py.draw.aaline(screen, color, i.position, j.position, 5)
 
 
-mygraph = Graph(40)  # 画线
+mygraph = Graph(100)  # 画线
 while True:
     screen.fill((255, 255, 255))
     for each in py.event.get():
