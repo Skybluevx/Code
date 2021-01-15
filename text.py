@@ -1,3 +1,2 @@
-dictl = {1: "w", 2: "q"}
-i = dictl.get(1)
-print(i)
+if 0:
+    print("l")
