@@ -1,4 +1,4 @@
-import jingdutiao
+from other import jingdutiao
 import main_log
 
 

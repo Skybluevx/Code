@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="database">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.19">
+    <root id="1">
+      <ServerVersion>3.31.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="daily"/>
+    <table id="7" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <column id="8" parent="6" name="index">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="9" parent="6" name="ts_code">
+      <Position>2</Position>
+      <DataType>TEXT|0s</DataType>
+    </column>
+    <column id="10" parent="6" name="trade_date">
+      <Position>3</Position>
+      <DataType>TEXT|0s</DataType>
+    </column>
+    <column id="11" parent="6" name="open">
+      <Position>4</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="12" parent="6" name="high">
+      <Position>5</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="13" parent="6" name="low">
+      <Position>6</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="14" parent="6" name="close">
+      <Position>7</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="15" parent="6" name="pre_close">
+      <Position>8</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="16" parent="6" name="change">
+      <Position>9</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="17" parent="6" name="pct_chg">
+      <Position>10</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="18" parent="6" name="vol">
+      <Position>11</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <column id="19" parent="6" name="amount">
+      <Position>12</Position>
+      <DataType>REAL|0s</DataType>
+    </column>
+    <index id="20" parent="6" name="ix_daily_index">
+      <ColNames>index</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <column id="21" parent="7" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="22" parent="7" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="23" parent="7" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="24" parent="7" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="25" parent="7" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+  </database-model>
+</dataSource>

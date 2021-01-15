@@ -11,12 +11,27 @@
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/study" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Xiaoan/life" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/SurperMary/source" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Xiaoan/gui" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WebProject/DjangoProject/mysite/booktest" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/dateutil" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/numpy" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/numpy-1.19.2.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/pandas" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/pandas-1.1.3.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/StockVisualization/venv/Lib/site-packages/python_dateutil-2.8.1.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/Workplace" />
+      <excludeFolder url="file://$MODULE_DIR$/java" />
+      <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (Pycharm.soure)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (code)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
+    <option name="renderExternalDocumentation" value="true" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
   </component>
 </module>
