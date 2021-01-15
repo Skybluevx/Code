@@ -14,7 +14,7 @@ from skimage.segmentation import slic
 import numpy.matlib
 import random
 
-file_name='02.jpeg';
+file_name= '02.jpeg';
 img=io.imread(file_name)
 
 row, col, channel = img.shape

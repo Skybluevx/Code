@@ -8,7 +8,7 @@ basicSize = 4
 grayLevelSize = 8
 gap = 2
  
-img = cv2.imread('test.jpeg',1)
+img = cv2.imread('test.jpeg', 1)
 grayImg = cv2.imread('test.jpeg', 0)
 imgHeight,imgWidth = 300,300
  

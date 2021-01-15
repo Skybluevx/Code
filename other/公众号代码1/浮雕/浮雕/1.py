@@ -21,7 +21,7 @@ def Filter_Fudiao(src_img):
             new_img[i, j]=new_value
     return new_img
 
-src_img_name='test.jpeg'
+src_img_name= 'test.jpeg'
 src_img=cv2.imread(src_img_name)
 gray_img = cv2.cvtColor(src_img, cv2.COLOR_BGR2GRAY)
 new_img=Filter_Fudiao(gray_img)

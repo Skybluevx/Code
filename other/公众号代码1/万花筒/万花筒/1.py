@@ -7,7 +7,7 @@ import numpy as np
 import numpy.matlib
 import math
  
-file_name='test.jpeg';
+file_name= 'test.jpeg';
 img=io.imread(file_name)
  
 img = img_as_float(img)

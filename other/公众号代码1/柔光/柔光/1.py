@@ -27,7 +27,7 @@ def addImage(img1, img2,alpha):
 
 
 if __name__ == '__main__':
-    img1=cv2.imread('test.jpeg',cv2.IMREAD_COLOR)  # 以彩色图的形式读入
+    img1=cv2.imread('test.jpeg', cv2.IMREAD_COLOR)  # 以彩色图的形式读入
     dist_img = img_filter(img1)                        # 执行高通过滤
     for i in range(1,10):                              # 循环执行（不同的alpha）：显示叠加图，写入处理后的图像
         IMG_Add = addImage(img1,dist_img,i*0.1)        # alpha，beta，gamma可调

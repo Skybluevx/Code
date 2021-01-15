@@ -1,27 +1,28 @@
-#参考来源：https://blog.csdn.net/matrix_space/article/details/78345510?depth_
-#1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
-
+#参考来源：https://blog.csdn.net/matrix_space/article/details/72329722?depth
+#_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
 import numpy as np
 from skimage import img_as_float
 import matplotlib.pyplot as plt
 from skimage import io
-import math
 import numpy.matlib
+import math
 
-file_name2='test.jpeg'
+file_name2= 'test.jpeg'
 img=io.imread(file_name2)
 
 img = img_as_float(img)
 
 row, col, channel = img.shape
 img_out = img * 1.0
-degree = 70
+alpha = 70.0
+beta = 30.0
+degree = 20.0
 
 center_x = (col-1)/2.0
 center_y = (row-1)/2.0
 
-xx = np.arange (col) 
-yy = np.arange (row)
+xx = np.arange(col)
+yy = np.arange(row)
 
 x_mask = numpy.matlib.repmat (xx, row, 1)
 y_mask = numpy.matlib.repmat (yy, col, 1)
@@ -30,17 +31,11 @@ y_mask = np.transpose(y_mask)
 xx_dif = x_mask - center_x
 yy_dif = center_y - y_mask
 
-r = np.sqrt(xx_dif * xx_dif + yy_dif * yy_dif)
+x = degree * np.sin(2 * math.pi * yy_dif / alpha) + xx_dif
+y = degree * np.cos(2 * math.pi * xx_dif / beta) + yy_dif
 
-theta = np.arctan(yy_dif / xx_dif)
-
-mask_1 = xx_dif < 0
-theta = theta * (1 - mask_1) + (theta + math.pi) * mask_1
-
-theta = theta + r/degree
-
-x_new = r * np.cos(theta) + center_x
-y_new = center_y - r * np.sin(theta) 
+x_new = x + center_x
+y_new = center_y - y 
 
 int_x = np.floor (x_new)
 int_x = int_x.astype(int)
@@ -69,4 +64,3 @@ plt.imshow (img_out)
 plt.axis('off')
 
 plt.show()
-
