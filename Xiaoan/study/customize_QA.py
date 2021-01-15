@@ -15,7 +15,7 @@ class CustomizeQA(object):
         }
 
         # 连接数据库文件
-        self.conn = sqlite3.connect("../data/Q_A.db")
+        self.conn = sqlite3.connect(r"E:\Anaconda\Pycharm.soure\Code2\Xiaoan\data\Q_A.db")
         self.cur = self.conn.cursor()
         # 创建表
         self.cur.execute("CREATE TABLE IF NOT EXISTS q_a (question TEXT, answer TEXT)")
