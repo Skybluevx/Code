@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Discuzq/Discuz-Q" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Discuzq/Discuz-Q-Web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Discuzq/Discuz-Q-uniapp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Spider_learning/Proxy_Spider/ProxySpider" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Spider_learning/Proxy_Spider/proxypool2/ProxyPool" vcs="Git" />
   </component>
 </project>
