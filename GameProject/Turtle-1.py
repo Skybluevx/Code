@@ -7,6 +7,7 @@ t.pensize(25)
 t.pencolor("red")
 i = 0
 
+
 while i < 10:
     t.penup()
     t.goto(-63, -10)
