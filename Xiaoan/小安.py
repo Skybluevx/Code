@@ -1,7 +1,10 @@
 import os
 import requests
+from datetime import *
+from tkinter import *  # 导入tkinter库
 from time import *
 from turtle import *
+from math import *
 from random import *
 from playsound import *
 from tqdm import *
@@ -17,6 +20,98 @@ from PIL import ImageFilter
 from PIL import ImageEnhance
 
 key = '1f136301d56d4df482527d838f862573'
+
+
+def get_songs_info(search_song) -> dict:
+    url = 'https://autumnfish.cn/search?keywords={}'.format(search_song)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+    }
+    try:
+        con = requests.get(url=url, headers=headers).json()
+        songs = con['result']['songs']
+    except Exception as e:
+        print('查找出错', e)
+    else:
+        songs_list = []
+        for song in songs:
+            songs_info = {'song_id': song['id'], 'song_name': song['name'], 'song_singer': song['artists'][0]['name']}
+            songs_list.append(songs_info)
+
+        for index, s in enumerate(songs_list):
+            print('第{}: 歌手: {}'.format(index + 1,s["song_singer"]))
+
+        try:
+            num = int(input('你需要第几首:'))
+        except :
+            print('输入错误  将随机下载一首')
+            return random.choice(songs_list)
+        else:
+            if num <= 0 or num > len(songs_list):
+                print('输入数值不在范围  将随机下载一首')
+                return random.choice(songs_list)
+            return songs_list[num - 1]
+
+
+def dow_song(song_id, song_name):
+    song_id = str(song_id)
+    song_name = song_name
+
+    song_down_link = "http://music.163.com/song/media/outer/url?id=" + song_id + ".mp3"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+    }
+    con = requests.get(url=song_down_link, headers=headers).content
+
+    if not os.path.exists('df/缓存歌曲'):
+        os.mkdir('df/缓存歌曲')
+
+    try:
+        with open('df/缓存歌曲/{}.mp3'.format(song_name), 'wb') as fq:
+            fq.write(con)
+            fq.flush()
+            print('{}缓存完成'.format(song_name))
+    except Exception as e:
+        print('{}缓存出错,错误信息:{}'.format(song_name,e))
+
+
+def main(equation):#方程组求解主函数
+    equation=equation.lower()
+    equa_mid=equation.split(",")#把输入的字符串用逗号转换成两个方程的列表
+    equa_mid[0] = equa_mid[0].replace("x-", "x+-")  # 对方程1进行规整，方便后面识别X，Y前面的数字
+    equa_mid[1] = equa_mid[1].replace("x-", "x+-")#对方程2进行规整，方便后面识别X，Y前面的数字
+    #以下几行对方程1和方程2进行规整，识别出X和Y前面的系数
+    mid1=equa_mid[0].split("+")#把+作为标识符进行分裂方程，mid1，mid2方程1识别出的中间数据。mid3和mid4位方程2识别出的中间数据
+    mid2=mid1[1].split("=")
+    mid3=equa_mid[1].split("+")
+    mid4=mid3[1].split("=")
+    if mid1[0][:-1]=="-":#由于减号和1系统无法直接识别，所以进行转换，-换成-1，x前面没有数字时需要换成1X。对X和Y进行同样的操作。
+        mid1[0]="-1x"
+    elif mid1[0][:-1]=="":
+        mid1[0]="1x"
+    if mid2[0][:-1]=="-":
+        mid2[0]="-1y"
+    elif mid2[0][:-1]=="":
+        mid2[0]="1y"
+    if mid3[0][:-1]=="-":
+        mid3[0]="-1x"
+    elif mid3[0][:-1]=="":
+        mid3[0]="1x"
+    if mid4[0][:-1]=="-":
+        mid4[0]="-1y"
+    elif mid4[0][:-1]=="":
+        mid4[0]="1y"
+    equa1=[mid1[0],mid2[0],mid2[1]]#规整后的方程1的列表
+    equa2=[mid3[0],mid4[0],mid4[1]]#规整后的方程2的列表
+    a=eval(equa1[0][:-1])#从方程1中识别出a和b
+    b=eval(equa1[1][:-1])
+    c=eval(equa2[0][:-1])#从方程2中识别出c和d
+    d=eval(equa2[1][:-1])
+    e=eval(equa1[2])#从方程1中识别出e
+    f=eval(equa2[2])#从方程2中识别出f
+    y=(a*f-c*e)/(a*d-b*c)#用二元一次方程组的公式计算x，y
+    x=(d*e-b*f)/(a*d-b*c)
+    return x,y
 
 def cc () : #定义画板还原
     clear()
@@ -191,8 +286,9 @@ while 1==1 :
         d = x["{}".format (y)]
         print ("小安:{}".format (d))#输出键的对应值
     elif '现在时间' in y :#如果‘现在时间在用户输入里面执行’
-        sj = datetime.now ()
-        print ("小安:现在时间是{}".format (sj))
+        sj = datetime.now()
+        sj_2 = sj.strftime("%Y-%m-%d %H:%M:%S")
+        print ("小安:现在时间是{}".format (sj_2))
     elif "在吗" in y :
         print ("小安:我一直都在")
     elif '你会什么' in y :
@@ -267,51 +363,51 @@ while 1==1 :
             print ("小安:输入错误")
     elif y == '退出程序' or y == '退出' or y == '退出小安' or y == '小安退出' or y == '小安退出程序':
         break
-    elif y == '计算机' :
+    elif y == '高级计算' :
         print ("小安:我只会二则运算，嘻嘻\n乘号用‘*’除号用‘/’\n乘方用‘**’,第一个数字是x次幂\n计算绝对值用/x/,第二个数字填0\n计算阶乘用!,仅限正整数和０，第二个数字填0\n求一个数的平方根用/**/，第二个数字用０\n求一个数的平方根用“///”,第一个数是被开方数，第二个是次方\n计算俩个数之商的余数用“%”\n在符号里输入'[退出]'退出,第一和第二个数字填0")
         while True :
             try :
-                print ("小安:请输入第一个数字")
-                js =int (input ("我:"))
-                print ("小安:请输符号")
-                js_2 = input ("我:")
-                print ("小安:请输入第二个数字")
-                js_3 = int (input ("我:"))
-                if js_2 == '+' :
-                    jg = js + js_3
-                    print (jg)
-                elif js_2 == '-' :
-                    jg_2 = js - js_3
-                    print (jg_2)
-                elif js_2 == '*' :
-                    jg_3 = js * js_3
-                    print (jg_3)
-                elif js_2 == '/' :
-                    jg_4 = js / js_3
-                    print (jg_4)
-                elif js_2 == '**' :
-                    jg_5 = pow (js,js_3)
-                    print (jg_5)
-                elif js_2 == '/x/' :
-                    jg_6 = fabs (js)
-                    print (jg_6)
-                elif js_2 == '!' :
-                    jg_7 = factorial (js)
-                    print (jg_7)
-                elif js_2 == '/**/' :
-                    jg_8 = sqrt (js)
-                    print (jg_8)
-                elif js_2 == '///' :
-                    jg_9 = pow (js,1/js_3)
-                    print (jg_9)
-                elif js_2 == '%' :
-                    jg_10 = js % js_3
-                    print (jg_10)
-                elif js_2 == '[退出]' :
-                    print("小安:已退出")
+                js=input("小安:请输入,列:1+1,2*8\n我:")
+                if '+' in js:
+                    js_1,js_2 = js.split(sep='+')
+                    js_3 = eval(js_1)+eval(js_2)
+                    print(js_3)
+                elif '-' in js:
+                    js_1, js_2 = js.split(sep='-')
+                    js_3 = eval(js_1) - eval(js_2)
+                    print(js_3)
+                elif '*' in js:
+                    js_1, js_2 = js.split(sep='*')
+                    js_3 = eval(js_1) * eval(js_2)
+                    print(js_3)
+                elif '/' in js:
+                    js_1, js_2 = js.split(sep='/')
+                    js_3 = eval(js_1) / eval(js_2)
+                    print(js_3)
+                elif '**' in js:
+                    js_1, js_2 = js.split(sep='**')
+                    js_3 = eval(js_1) ** eval(js_2)
+                    print(js_3)
+                elif 'fabs' in js:
+                    js_1, js_2 = js.split(sep='fabs')
+                    js_3 = fabs(eval(js_2))
+                    print(js_3)
+                elif '!' in js:
+                    js_1, js_2 = js.split(sep='!')
+                    js_3 = factorial(eval(js_1))
+                    print(js_3)
+                elif 'sqrt' in js:
+                    js_1, js_2 = js.split(sep='sqrt')
+                    js_3 = sqrt(eval(js_2))
+                    print(js_3)
+                elif '%' in js:
+                    js_1, js_2 = js.split(sep='%')
+                    js_3 = eval(js_1) % eval(js_2)
+                    print(js_3)
+                elif '退出' in js:
                     break
                 else :
-                    print ("小安:不会")
+                    print ("小安:错误")
             except :
                 print ("小安:输入错误,请重新输入")
     elif y == 'PM2.5值' :
@@ -346,21 +442,27 @@ while 1==1 :
                 print ("小安:退出")
                 break
     elif y == '图片修改' :
-        print ("小安:我会设置图片的\n1.轮廓效果\n2.对比度增强")
+        print ("小安:我会设置图片的\n1.轮廓效果\n2.对比度增强\n3.修改图片大小")
         tp = input ("我:")
-        if tp == '轮廓效果':
+        if tp == '轮廓效果' or tp == '1':
             tp_1 = input("小安:请输入文件名(需把需修改的文件放在与程序相同的目录下)")
             tp_2 = input("小安:请输入需保存的文件名")
             im = Image.open('{}.jpg'.format(tp_1))
             om = im.filter(ImageFilter.CONTOUR)
             om.save('{}.jpg'.format(tp_2))
-        elif tp == '对比度增强':
+        elif tp == '对比度增强' or tp == '2':
             tp_3 = input ("小安:请输入文件名(需把需修改的文件放在与程序相同的目录下)")
             tp_4 = input ("小安:请输入需保存的文件名")
             tp_5 = eval(input("小安:请输入对比度"))
             im_2 = Image.open('{}.jpg'.format(tp_3))
             om_2 = ImageEnhance.Contrast(im_2)
             om_2.enhance(tp_5).save('{}.jpg'.format(tp_4))
+        elif tp == '3' or tp == '修改图片大小':
+            xgtp_1 = input("小安:请输入文件名(需把需修改的文件放在与程序相同的目录下)")
+            xgtp__ = input("小安:请输入需保存的文件名")
+            xgtp,xgtp_0 = eval(input("小安:请输入尺寸,如'12,12'"))
+            xgtp_2 = Image.open("{}.jpg".format(xgtp_1)).resize((xgtp,xgtp_0))
+            xgtp_2.save("{}.jpg".format(xgtp__))
         else :
             print ("小安:我不会")
     elif y == '计算BMI值' :
@@ -965,69 +1067,152 @@ while 1==1 :
         os.rename('df\sj.html', 'df\sj.dll')
     elif y == '播放音乐':
         while True:
-            try:
-                print("小安:请选择需播放的音乐(需包括后缀名),输入[退出]退出(其它输入”０“),输入“help”查看可播放的音乐")
-                yy = input("我:")
-                yy_1 = int(input("小安:请输入播放次数\n我:"))
-                yy_2 = int(input("小安:请输入播放的时间,输入“０”播放整首\n我:"))
-                if yy == '[退出]':
-                    print("小安:退出")
-                    break
-                elif yy == 'help':
-                    print("小安:打开yinyue文件夹可查看")
-                elif yy_2 == 0:
-                    for i in range(yy_1):
-                        print ("小安:播放中...")
-                        playsound('df\yinyue\{}'.format(yy))
-                        print("播放结束")
-                elif yy_2 > 0:
-                    for i in range(yy_1):
-                        file = r'df\yinyue\{}'.format(yy)
-                        pygame.mixer.init()
-                        print("播放中...")
-                        track = pygame.mixer.music.load(file)
-                        pygame.mixer.music.play()
-                        sleep(yy_2)
-                        pygame.mixer.music.stop()
-                        print("小安:播放结束")
-                else:
-                    print("小安:输入错误")
-            except:
-                print("小安:输入错误")
-    elif y == '凯撒密码':
-        while True:
-            ks = input("\n小安:请输入\n1.加密 2.解密 3.退出\n我:")
-            if ks == '1' or ks == '加密':
-                jm = input("\n小安:请输入需加密的内容\n我:")
-                try:
-                    jm_1 = int(input("\n小安:请输入密匙\n我:"))
-                except:
-                    print("小安:密匙输入错误,密匙必须是数字")
-                print("小安:加密结果是")
-                for p in jm:
-                    if ord("a") <= ord("p") <= ord("z"):
-                        jmjg = chr(ord("a") + (ord(p) - ord("a") + jm_1) % 26)
-                        print("{}".format(jmjg),end='')
-                    else:
-                        print("{}".format(p))
-            elif ks == '2' or ks == '解密':
-                jm_3 = input("\n小安:请输入需解密的内容\n我:")
-                try:
-                    jm_4 = int(input("\n小安:请输入密匙\n我:"))
-                except:
-                    print("小安:密匙输入错误,密匙必须是数字")
-                print("小安:解密结果是")
-                for p in jm_3:
-                    if ord("a") <= ord("p") <= ord("z"):
-                        jmjg_1= chr(ord("a") + (ord(p) - ord("a") - jm_4) % 26)
-                        print("{}".format(jmjg_1),end='')
-                    else:
-                        print("{}".format(p),end='')
-            elif ks == '3' or ks == '退出':
-                print("小安:退出凯撒密码")
+            song_1 = input("小安:请输入歌曲名(输入“[退出]”退出)")
+            song_2 = os.listdir('df\缓存歌曲')
+            song_3 = '{}.mp3'.format(song_1)
+            if song_1 == '[退出]':
+                print("小安:退出")
                 break
+            if song_3 not in song_2:
+                try:
+                    song = get_songs_info(song_1)
+                except:
+                    print("小安:播放错误,请在缓存歌曲文件夹里看看缓存歌曲是否有问题")
+                dow_song(song['song_id'], song['song_name'])
+            yy_1 = int(input("小安:请输入播放次数\n我:"))
+            yy_2 = int(input("小安:请输入播放的时间,输入“０”播放整首\n我:"))
+            if yy_2 == 0:
+                for i in range(yy_1):
+                    print("小安:播放中...")
+                    playsound('df\缓存歌曲\{}.mp3'.format(song_1))
+                    print("播放结束")
+            elif yy_2 > 0:
+                for i in range(yy_1):
+                    file = r'df\缓存歌曲\{}.mp3'.format(song_1)
+                    pygame.mixer.init()
+                    print("播放中...")
+                    track = pygame.mixer.music.load(file)
+                    pygame.mixer.music.play()
+                    sleep(yy_2)
+                    pygame.mixer.music.stop()
+                    print("小安:播放结束")
             else:
                 print("小安:输入错误")
+    elif y == '加密解密':
+        while True:
+            jmjm = input("小安:请选择加密或解密方式1.凯撒秘密码 2.摩斯密码 3.其他 4.退出\n我:")
+            if jmjm == '1' or jmjm == '凯撒密码':
+                ks = input("\n小安:请输入\n1.加密 2.解密 \n我:")
+                if ks == '1' or ks == '加密':
+                    jm = input("\n小安:请输入需加密的内容\n我:")
+                    try:
+                        jm_1 = int(input("\n小安:请输入密匙\n我:"))
+                    except:
+                        print("小安:密匙输入错误,密匙必须是数字")
+                    print("小安:加密结果是\n")
+                    for p in jm:
+                        if ord("a") <= ord("p") <= ord("z"):
+                            jmjg = chr(ord("a") + (ord(p) - ord("a") + jm_1) % 26)
+                            print("{}".format(jmjg),end='')
+                        else:
+                            print("{}".format(p))
+                elif ks == '2' or ks == '解密':
+                    jm_3 = input("\n小安:请输入需解密的内容\n我:")
+                    try:
+                        jm_4 = int(input("\n小安:请输入密匙\n我:"))
+                    except:
+                        print("小安:密匙输入错误,密匙必须是数字")
+                    print("小安:解密结果是\n")
+                    for p in jm_3:
+                        if ord("a") <= ord("p") <= ord("z"):
+                            jmjg_1= chr(ord("a") + (ord(p) - ord("a") - jm_4) % 26)
+                            print("{}".format(jmjg_1),end='')
+                        else:
+                            print("{}".format(p),end='')
+                else:
+                    print("小安:输入错误")
+            elif jmjm == '2' or jmjm == '摩斯密码':
+                msmm = {'A': '.-', 'a': '.- ', 'B': '-...', 'b': '-... ', 'C': '-.-.', 'c': '-.-. ', 'D': '-..',
+                        'd': '-.. ', 'E': '.', 'e': '. ', 'F': '..-.'
+                    , 'f': '..-. ', 'G': '--.', 'g': '--.', 'H': '....','h': '.... ', 'I': '..','i': '.. ', 'J': '.---',
+                        'j': '.--- ', 'K': '-.-', 'k': '-.- '
+                    , 'L': '.-..', 'l': '.-.. ', 'M': '--', 'm': '-- ', 'N': '-.', 'n': '-. ', 'O': '---', 'o': '--- ',
+                        'P': '.--.', 'p': '.--. ', 'Q': '--.-'
+                    , 'q': '--.- ', 'R': '.-.', 'r': '.-. ', 'S': '...', 's': '... ', 'T': '-', 't': '- ', 'U': '..-',
+                        'u': '..- ', 'V': '...- ', 'v': '...- '
+                    , 'W': '.--', 'w': '.-- ', 'X': '-..-', 'x': '-..- ', 'Y': '-.--', 'y': '-.-- ', 'Z': '--..',
+                        'z': '--.. ', '1': '.---- ', '2': '..--- '
+                    , '3': '...-- ', '4': '....- ', '5': '..... ', '6': '-.... ', '7': '--... ', '8': '---.. ', '9': '----. ',
+                        '0': '----- ', '?': '..--.. '
+                    , '/': '-..-. ', '(': '-.--.- ', ')': '-.--.- ', '-': '-....- ', '.': '.-.-.- '}
+                while True:
+                    msmm_3 = input("小安: 1.加密 2.解密 3.退出")
+                    if msmm_3 == '1' or msmm_3 == '加密':
+                        msmm_1 = input("小安:请输入英文(输入'退出'退出)\n我:")
+                        if msmm_1 == '退出':
+                            print("小安:退出")
+                            break
+                        print("小安:", end='')
+                        for msmm_1 in msmm_1:
+                            if msmm_1 not in msmm:
+                                print("{:2}".format(msmm_1), end='')
+                            else:
+                                msmm_2 = msmm["{}".format(msmm_1)]
+                                print("  {:4}".format(msmm_2), end="")
+                                sleep(0.05)
+                        print(" ")
+                    elif msmm_3 == '2' or msmm_3 == '解密':
+                        msmmjm=''
+                        while True:
+                            try:
+                                msmm_jm = input("小安:请输入每输完一个就要加一个空格,输入‘退出’退出\n我:")
+                                if '退出' in msmm_jm:
+                                    break
+                                for msmm_jm in msmm_jm:
+                                    msmmjm += msmm_jm
+                                    if ' ' in msmmjm:
+                                        di = {v: k for k, v in msmm.items()}
+                                        q = di[msmmjm]
+                                        print('{}'.format(q),end='')
+                                        msmmjm=''
+                                print('')
+                            except:
+                                print("小安:输入错误")
+                    elif msmm_3 == '3' or msmm_3 == '退出':
+                        break
+            elif jmjm == '3' or jmjm == '其他':
+                qt = input("小安:请选择1.加密 2.解密\n我:")
+                if qt == '1' or qt == '加密':
+                    qtjm = input("小安:请输入需加密的内容\n我:")
+                    try:
+                        qtjm_1 = int(input("小安:请输入密匙\n我:"))
+                    except:
+                        print("小安:输入错误")
+                    for qtjm in qtjm:
+                        qtjm_2 = ord(qtjm)
+                        qtjm_2 += qtjm_1
+                        qtjm_3 = chr(qtjm_2)
+                        print("{}".format(qtjm_3), end='')
+                        sleep(0.05)
+                    print(" ")
+                elif qt == '2' or qt == '解密':
+                    qtjm_0 = input("小安:请输入需解密的内容\n我:")
+                    try:
+                        qtjm_4 = int(input("小安:请输入密匙\n我:"))
+                    except:
+                        print("小安:输入错误")
+                    for qtjm_0 in qtjm_0:
+                        qtjm_5 = ord(qtjm_0)
+                        qtjm_5 -= qtjm_4
+                        qtjm_7 = chr(qtjm_5)
+                        print("{}".format(qtjm_7), end='')
+                        sleep(0.05)
+                    print(" ")
+                else:
+                    print("小安:输入错误")
+            elif jmjm == '4' or jmjm == '退出':
+                print("小安:退出")
+                break
     elif y == '数量计算':
         sl = 0
         while True:
@@ -1035,10 +1220,8 @@ while 1==1 :
             if sljs == '1' or sljs == '计算单个字或词句子':
                 dgz = input("小安:请输入内容\n我:")
                 dgz_1 = input("小安:请输入需计算的单个字或词，句子\n我:")
-                for dgz in dgz:
-                    if dgz_1 in dgz:
-                        sl += 1
-                print("小安:有{}个".format(sl))
+                dgz_3 = dgz.count(dgz_1)
+                print("小安:有{}个".format(dgz_3))
                 sl = 0
             elif sljs == '2' or sljs == '计算全部':
                 qb = input("小安:请输入内容\n我:")
@@ -1094,16 +1277,22 @@ while 1==1 :
             else:
                 print("小安:输入错误,请重新输入")
     elif y == '运气测试':
-        print("小安:欢迎进入")
-        while True:
+        wqcs = datetime.now()
+        wqcs_1 = wqcs.strftime("%Y%m%d")
+        with open("df/sjs.dll", 'r+') as f:
+            lineq = f.read()
+        wqcs_4 = int(wqcs_1)
+        wqcs_5 = int(lineq)
+        wqcs_3 = wqcs_4 - wqcs_5
+        if wqcs_3 == 0:
+            print("小安:你今天的次数已用完,请明天再来")
+        else:
+            print("小安:欢迎进入")
             sls = 1
             try:
-                yc = int(input("小安:请输入一个数字,需在1~20之间,输入“101”退出\n我:"))
+                yc = int(input("小安:请输入一个数字,需在1~20之间\n我:"))
             except:
                 print("小安:请输入数字")
-            if yc == 101:
-                print("小安:退出")
-                break
             while True:
                     yc_2 = randint(1,20)
                     if yc < 0 or yc >20:
@@ -1119,8 +1308,121 @@ while 1==1 :
                             print("小安:你本次的运气一般")
                         else:
                             print("小安:你本次的运气不够好")
-                        sls = 1
+                            sls = 1
+                        cssj = datetime.now()
+                        cssj_2 = cssj.strftime("%Y%m%d")
+                        cssj_3 = open("df/sjs.dll","w+")
+                        cssj_3.write(cssj_2)
+                        cssj_3.close()
                         break
+    elif y == '二元一次方程计算':
+        print("小安:二元一次方程组请采用如下格式输入：ax+by=e，cx+dy=f，\n如果任何一个方程中有x或者y不存在，请用0x或者0y补齐,输入”退出“退出")
+        while True:
+            equa = input("小安:请输入二元一次方程组，方程之间用英文逗号隔开\n我:")
+            if equa == '退出':
+                print("小安:退出")
+                break
+            d = main(equa)
+            print("小安:该二元一次方程组的解为:x={0[0]:}，y={0[1]:}".format(d))
+            d = input()
+            if d != "":
+                exit()
+    elif y == '简单计算':
+        root = Tk()  # 给窗体
+        root.title('calculator')  # 设置窗体名字
+        frm = Frame(root, bg='pink')  # 新建框架
+        frm.pack(expand=YES, fill=BOTH)  # 放置框架
+        display = StringVar()
+        e = Entry(frm, textvariable=display)  # 添加输入框
+        e.grid(row=0, column=0, sticky=N, columnspan=4, rowspan=2)  # 放置输入框位置
+
+
+        def print_jia():
+            e.insert(INSERT, '+')
+
+
+        def print_jian():
+            e.insert(INSERT, '-')
+
+
+        def print_cheng():
+            e.insert(INSERT, '*')
+
+
+        def print_chu():
+            e.insert(INSERT, '/')
+
+
+        def print_dengyu():
+            e.insert(INSERT, '=')
+
+
+        def cal(display):
+            try:
+                display.set(eval(display.get()))
+            except Exception as e:
+                display.set(e)
+
+
+        Button(frm, text='1', width=3, bg='yellow', command=lambda: e.insert(INSERT, '1')).grid(row=2, column=0,
+                                                                                                sticky=W)  # 设置按钮，lambda为匿名函数
+        Button(frm, text='2', width=3, bg='yellow', command=lambda: e.insert(INSERT, '2')).grid(row=2, column=1)
+        Button(frm, text='3', width=3, bg='yellow', command=lambda: e.insert(INSERT, '3')).grid(row=2, column=2)
+        Button(frm, text='4', width=3, bg='yellow', command=lambda: e.insert(INSERT, '4')).grid(row=3, column=0,
+                                                                                                sticky=W)
+        Button(frm, text='5', width=3, bg='yellow', command=lambda: e.insert(INSERT, '5')).grid(row=3, column=1)
+        Button(frm, text='6', width=3, bg='yellow', command=lambda: e.insert(INSERT, '6')).grid(row=3, column=2)
+        Button(frm, text='7', width=3, bg='yellow', command=lambda: e.insert(INSERT, '7')).grid(row=4, column=0,
+                                                                                                sticky=W,
+                                                                                                rowspan=2)
+        Button(frm, text='8', width=3, bg='yellow', command=lambda: e.insert(INSERT, '8')).grid(row=4, column=1,
+                                                                                                rowspan=2)
+        Button(frm, text='9', width=3, bg='yellow', command=lambda: e.insert(INSERT, '9')).grid(row=4, column=2,
+                                                                                                rowspan=2)
+        Button(frm, text='/', width=4, bg='white', command=print_chu).grid(row=5, column=3, sticky=E)
+        Button(frm, text='*', width=4, bg='white', command=print_cheng).grid(row=4, column=3, sticky=E)
+        Button(frm, text='-', width=4, bg='white', command=print_jian).grid(row=3, column=3, sticky=E)
+        Button(frm, text='+', width=4, bg='white', command=print_jia).grid(row=2, column=3, sticky=E)
+        Button(frm, text='=', width=4, bg='white', command=lambda: cal(display)).grid(row=6, column=3, sticky=E)
+        Button(frm, text='clear', width=3, bg='red', command=lambda: display.set('')).grid(row=6, column=0, sticky=W)
+        Button(frm, text='0', width=3, bg='red', command=lambda: e.insert(INSERT, '0')).grid(row=6, column=2)
+        Button(frm, text='.', width=3, bg='red', command=lambda: e.insert(INSERT, '.')).grid(row=6, column=1)
+
+        root.mainloop()  # 让程序一直循环
+    elif y == '闹钟':
+        os.rename('df\znz.dll', 'df\znz.exe')
+        os.system("df\znz.exe")
+        try:
+            sleep(1)
+            os.rename('df\znz.exe', 'df\znz.dll')
+        except:
+            print("")
+    elif y == '复制文字':
+        while True:
+            fzwz = input("小安:请选择 1.复制在一行,如下:asasasas 2.每个一行,如下:\nas\nas\nas \n3.退出(内容和次数输入0)\n我:")
+            fzny = input("小安:请输入需复制的内容\n我:")
+            try:
+                fzcs = int(input("小安:请输入需复制的次数\n我:"))
+            except:
+                print("小安:输入错误")
+            if fzwz == '1' or fzwz == '复制在一行':
+                fzcs_2 = fzny * fzcs
+                wjj = open("复制内容.txt","w+")
+                wjj.write(fzcs_2)
+                wjj.close()
+                print("小安:复制完毕，在复制内容.txt里")
+            elif fzwz == '2' or fzwz == '每个一行':
+                fzcs_1 = ("{}\n".format(fzny))
+                fzcs_3 = fzcs_1 * fzcs
+                wjj = open("复制内容.txt", "w+")
+                wjj.write(fzcs_3)
+                wjj.close()
+                print("小安:复制完毕，在复制内容.txt里")
+            elif fzwz == '3' or fzwz == '退出':
+                print("小安:退出")
+                break
+            else:
+                print("小安:输入错误")
     else:
         print("小安:emmm,我无法回答")#机器人学习
         print("小安:是否需要我学习?")
