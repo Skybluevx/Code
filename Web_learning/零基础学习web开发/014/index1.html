@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格的制作</title>
+
+    <style>
+        table {
+            border: 1px solid black;  /*设置表格的线框宽度，颜色*/
+            border-collapse: collapse;  /*将表格的双线框合并*/
+        }
+        td {
+            border: 1px solid red;
+            padding: 5px;  /*通过padding来调节表格的内边距*/
+        }
+        th {
+            border: 1px solid blue;
+            padding: 5px;
+        }
+        caption {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>table元素</h1>
+<p>用于定义一个标签</p>
+<h2>tr元素</h2>
+<p>用于定义表格里的行</p>
+<h2>th元素</h2>
+<p>用于定义表头单元格，默认加粗剧中</p>
+<h2>td元素</h2>
+<p>用于定义数据单元格</p>
+<table>
+    <caption>个人信息</caption> <!--添加表格的标题-->
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+    </tr>
+    <tr>
+        <td>张三</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>李四</td>
+        <td>15</td>
+    </tr>
+</table>
+</body>
+</html>
