@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格的制作</title>
+
+    <style>
+        table {
+            border: 1px solid black;  /*设置表格的线框宽度，颜色*/
+            border-collapse: collapse;  /*将表格的双线框合并*/
+        }
+        td {
+            border: 1px solid red;
+            padding: 5px;  /*通过padding来调节表格的内边距*/
+        }
+        th {
+            border: 1px solid blue;
+            padding: 5px;
+            background: gray;  /*设置表格背景颜色*/
+            color: white;  /*设置表格文字颜色*/
+        }
+        caption {
+            padding: 5px;
+        }
+        tbody th {
+            background: lightgray;
+        }
+    </style>
+</head>
+<body>
+<h1>table元素</h1>
+<p>用于定义一个标签</p>
+<h2>tr元素</h2>
+<p>用于定义表格里的行</p>
+<h2>th元素</h2>
+<p>用于定义表头单元格，默认加粗剧中</p>
+<h2>td元素</h2>
+<p>用于定义数据单元格</p>
+<table>
+    <colgroup>
+        <col style="background: red">
+        <col span="2" style="background: green">
+    </colgroup>
+    <caption>个人信息</caption> <!--添加表格的标题-->
+    <thead> <!--在表格中添加thead，tbody，tfoot元素将表格进行更加严密的划分-->
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>张三</th>
+            <td rowspan="2">12</td>  <!--rowspan元素用于设置该单元格纵跨距离-->
+            <td>女</td>
+        </tr>
+        <tr>
+            <th>李四</th>
+            <td>男</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="3">本资料纯属瞎编</th>  <!--colspan元素用于设置该单元格横跨距离-->
+        </tr>
+    </tfoot>
+</table>
+</body>
+</html>
