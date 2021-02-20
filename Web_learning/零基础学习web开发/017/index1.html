@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单的基本操作</title>
+</head>
+<body>
+<h1>自动填充1</h1>
+<p>form元素的 autocomplete属性，可设置浏览器是否记住用户输入的信息，默认为 on</p>
+<form action="welcome.html" method="post" autocomplete="on">
+    你是谁：<input type="text" name="name"><br><br>
+    我是：<input type="text" name="me"><br><br>
+    <button type="submit">提交</button>
+    <button type="reset">清除</button>
+</form>
+<h1>自动填充2</h1>
+<p>input元素自带的 autocomplete属性可覆盖 form的属性</p>
+<form action="welcome.html" method="post" autocomplete="off">
+    你是谁：<input type="text" name="name" autocomplete="on"><br><br>
+    我是：<input type="text" name="me"><br><br>
+    <button type="submit">提交</button>
+    <button type="reset">清除</button>
+</form>
+<h1>指定目标显示位置</h1>
+<p>指定响应提交表单的页面应该如何显示，是原页面还是新标签页</p>
+<form action="welcome.html" method="post" autocomplete="off" target="_blank">
+    你是谁：<input type="text" name="name" autocomplete="on"><br><br>
+    我是：<input type="text" name="me"><br><br>
+    <button type="submit">提交</button>
+    <button type="reset">清除</button>
+</form>
+<h1>设置默认值</h1>
+<p>input元素的 value属性可设置输入框的默认值</p>
+<form action="welcome.html" method="post" autocomplete="off">
+    你是谁：<input type="text" name="name" autocomplete="on"><br><br>
+    我是：<input type="text" name="me" value="我就是我"><br><br>
+    <button type="submit">提交</button>
+    <button type="reset">清除</button>
+</form>
+<h1>自动聚焦</h1>
+<p>表单一出来就自动聚焦到某个input输入框中，在需要自动聚焦的input元素内加autofocus属性即可</p>
+<form action="welcome.html" method="post" autocomplete="off">
+    你是谁：<input type="text" name="name" autocomplete="on" autofocus><br><br>
+    我是：<input type="text" name="me"><br><br>
+    <button type="submit">提交</button>
+    <button type="reset">清除</button>
+</form>
+<h1>禁用元素</h1>
+<form action="welcome.html" method="post" autocomplete="off">
+    你是谁：<input type="text" name="name" autocomplete="on" ><br><br>
+    我是：<input type="text" name="me" value="我就是我" disabled><br><br>
+    <button type="submit">提交</button>
+    <button type="reset">清除</button>
+</form>
+<h1>禁止修改</h1>
+<p>让你禁止修改输入框的值</p>
+<form action="welcome.html" method="post" autocomplete="off">
+    你是谁：<input type="text" name="name" autocomplete="on"><br><br>
+    我是：<input type="text" name="me" value="wo" readonly><br><br>
+    <button type="submit">提交</button>
+    <button type="reset">清除</button>
+</form>
+</body>
+</html>
