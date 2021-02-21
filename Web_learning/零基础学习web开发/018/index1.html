@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提高用户交互体验</title>
+</head>
+<body>
+<h1>label元素</h1>
+<h2>隐式关联</h2>
+<p>提高用户交互体验，不会向用户产生任何效果</p>
+<form action="welcome.html" method="post" autocomplete="off">
+    <label>你是谁：<input type="text" name="name"></label><br><br>
+    <label>我是：<input type="text" name="me"></label><br><br>
+    <button type="submit">提交</button>
+</form>
+<h2>显式关联</h2>
+<form action="welcome.html" method="post" autocomplete="off">
+    <label for="name">你是谁：<input type="text" name="name" id="name"></label><br><br>
+    <label for="me">我是：<input type="text" name="me" id="me"></label><br><br>
+    <button type="submit">提交</button>
+</form>
+<h1>fieldset元素</h1>
+<p>可以将表单内的相关元素进行分组</p>
+<form action="welcome.html" method="post" autocomplete="off">
+    <fieldset>
+        <label for="name">你是谁：<input type="text" name="name" id="name"></label><br><br>
+    </fieldset>
+    <fieldset>
+        <label for="me">我是：<input type="text" name="me" id="me"></label><br><br>
+    </fieldset>
+    <button type="submit">提交</button>
+</form>
+<h1>legend元素</h1>
+<p>必须作为fieldset元素的第一个子元素存在</p>
+<form action="welcome.html" method="post" autocomplete="off">
+    <fieldset>
+        <legend>问题</legend>
+        <label for="name">你是谁：<input type="text" name="name" id="name"></label><br><br>
+    </fieldset>
+    <fieldset>
+        <legend>答案</legend>
+        <label for="me">我是：<input type="text" name="me" id="me"></label><br><br>
+    </fieldset>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

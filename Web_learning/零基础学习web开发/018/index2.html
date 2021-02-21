@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>增加选项框的下拉选择</title>
+</head>
+<body>
+    <h1>select元素和option元素添加下拉框</h1>
+    <form action="welcome.html" method="post">
+        <fieldset>
+            <legend>问题</legend>
+            <label for="name">你是谁：
+                <select name="name" id="name">
+                    <optgroup label="二字名字">
+                        <option value="01">张三</option>
+                        <option value="02">李四</option>
+                        <option value="03">王五</option>
+                    </optgroup>
+                        <optgroup label="三字名字">
+                        <option value="001">张老三</option>
+                        <option value="002">李老四</option>
+                    </optgroup>
+                </select>
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>答案</legend>
+            <label for="me">我是：</label><input type="text" name="me" id="me"><br><br>
+        </fieldset>
+    </form>
+    <h1>optgroup元素</h1>
+    <p>对下拉列表进行分组</p>
+
+</body>
+</html>
