@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input元素的详细介绍</title>
+</head>
+<body>
+    <h1>type属性</h1>
+    <h2>上传文件：file</h2>
+    <p>form元素的enctype属性规定了在发送到服务器之前，应该如何对表单的数据进行编码，只有正确编码的数据，才能完整的传递给服务器。</p><br>
+    <p>文件设置enctype="multipart/form-data"</p>
+    <form action="welcome.html" method="post" enctype="multipart/form-data">
+        <label for="file">上传文件按钮：<input type="file" name="file" id="file1"></label>
+    </form>
+    <h3>指定文件的上传类型</h3>
+    <h4>input元素的accept属性</h4>
+    <form action="welcome.html" method="post" enctype="multipart/form-data">
+        <label for="file">上传文件按钮：<input type="file" name="file" id="file1" accept="image/*"></label>
+    </form>
+    <h3>限制文件大小</h3>
+    <form action="welcome.html" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="MAX_FILE_SIZE" value="1024">
+        <label for="file">上传文件按钮：<input type="file" name="file" id="file1" accept="image/*"></label>
+    </form>
+    <h3>同时上传多个文件</h3>
+    <p>multiple表示多数的</p>
+    <form action="welcome.html" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="MAX_FILE_SIZE" value="1024">
+        <label for="file">上传文件按钮：<input type="file" name="file" id="file1" accept="image/*" multiple></label>
+    </form>
+</body>
+</html>

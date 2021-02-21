@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input元素的详细介绍</title>
+</head>
+<body>
+    <h1>type属性</h1>
+    <h2>submit、button和reset，用于实现按钮功能</h2>
+    <form action="welcome.html" method="post">
+        <label for="name">你的名字：</label><input type="text" name="name" id="name"><br><br>
+        <label for="email">你的邮箱：</label><input type="text" name="email" id="email"><br><br>
+        <input type="submit" value="提交">
+        <input type="reset" value="清除">
+        <input type="button" value="点我！" onclick="msg()">
+    </form>
+
+    <script>
+        function msg() {
+            alert("我喜欢你！")
+        }
+    </script>
+
+    <h2>radio，用于实现单选框；name的相同才会使单选互斥</h2>
+    <form action="welcome.html" method="POST">
+        <label><input type="radio" name="name" value="01">张三</label>
+        <label><input type="radio" name="name" value="02">李四</label>
+    </form>
+
+    <h2>复选框：checkbox</h2>
+    <label><input type="checkbox" name="names" id="121" value="xiaolizi">小李子</label>
+    <label><input type="checkbox" name="names" id="122" value="dalizi">大栗子</label>
+    <label><input type="checkbox" name="names" id="123" value="zhonglizi">重离子</label>
+
+    <h2>时间和日期：time（时间）、date（日期）、month（年月）、week（星期）、datetime-local（当地日期和时间）</h2>
+    <form action="welcome.html" method="post">
+        <label>时间：<input type="time" name="time" id="time"></label><br><br>
+        <label>日期：<input type="date" name="date" id="date"></label><br><br>
+        <label>年月：<input type="month" name="month" id="month"></label><br><br>
+        <label>星期：<input type="week" name="week" id="week"></label><br><br>
+        <label>当地时间：<input type="datetime-local" name="datetime-local" id="datetime-local"></label><br><br>
+        <label><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>搜索框：search</h2>
+    <label for="search">你想找谁？<input type="search" name="search" id="search"></label>
+    <input type="submit" value="提交">
+
+    <h2>颜色选择框：color</h2>
+    <label for="color">选颜色：<input type="color" name="color" id="159"></label>
+
+    <h2>图像按钮：image</h2>
+    <label for="img">我是图片按钮：<input type="image" src="123.jpg" alt="图片出错啦"></label>
+
+    <h2>将input元素隐藏起来：hidden</h2>
+    <label for="but">你看不见我 -> <input type="hidden" name="but"></label>
+</body>
+</html>
