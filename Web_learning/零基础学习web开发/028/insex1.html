@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在网页中嵌入视频</title>
+</head>
+<body>
+    <h1>video元素</h1>
+    <video src="video2.mp4" width="959" height="523">视频不可播放</video>
+
+    <h1>播放控件和自动播放</h1>
+    <p>controls属性和autoplay属性</p>
+    <video width="959" height="523" controls>
+        <source src="http://fishc.oss-cn-hangzhou.aliyuncs.com/Web/video_tag.mp4" type="video/mp4">
+        视频不可播放
+    </video>
+
+<h1>视频预加载：preload属性</h1>
+    <p>none：禁止预加载，等用户点击开始播放视频的时候再加载；auto：默认，和网页一起加载；metadata：仅加载必要的元素</p>
+<video width="959" height="523" controls preload="metadata">
+    <source src="http://fishc.oss-cn-hangzhou.aliyuncs.com/Web/video_tag.mp4" type="video/mp4">
+    视频不可播放
+</video>
+
+<h1>视频封面：poster属性</h1>
+<video width="959" height="523" controls preload="metadata" poster="img.jpg">
+    <source src="http://fishc.oss-cn-hangzhou.aliyuncs.com/Web/video_tag.mp4" type="video/mp4">
+    视频不可播放
+</video>
+
+<h1>循环：loop属性</h1>
+<video width="959" height="523" controls preload="metadata" poster="img.jpg" loop>
+    <source src="http://fishc.oss-cn-hangzhou.aliyuncs.com/Web/video_tag.mp4" type="video/mp4">
+    视频不可播放
+</video>
+</body>
+</html>
