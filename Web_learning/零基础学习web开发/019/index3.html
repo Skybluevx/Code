@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input元素的详细介绍</title>
+</head>
+<body>
+    <h1>type属性</h1>
+    <h2>限制数字输入：number</h2>
+    <form action="welcome.html" method="post">
+        <label for="name">姓名：<input type="text" name="name" id="name"></label><br><br>
+        <label for="age">年龄：<input type="number" name="age" id="age"></label><br><br>
+        <label for="sex">性别：</label><input type="radio" name="sex" id="sex1" value="male">男
+        <input type="radio" name="sex" id="sex2" value="women">女<br><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>限定数字输入范围：min、max和step</h2>
+    <form action="welcome.html" method="post">
+        <label for="name">姓名：<input type="text" name="name" id="name"></label><br><br>
+        <label for="age">年龄：<input type="number" name="age" id="age" min="0" max="100" step="1"></label><br><br>
+        <label for="sex">性别：</label><input type="radio" name="sex" id="sex1" value="male">男
+        <input type="radio" name="sex" id="sex2" value="women">女<br><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>数值滚动条：range</h2>
+    <form action="welcome.html" method="GET">
+        <label for="name">姓名：<input type="text" name="name" id="name"></label><br><br>
+        <label for="age">年龄：<input type="range" name="age" id="age" value="1" min="0" max="100" step="1"></label><br><br>
+        <label for="sex">性别：</label><input type="radio" name="sex" id="sex1" value="male">男
+        <input type="radio" name="sex" id="sex2" value="women">女<br><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>邮箱、电话和网址：email、tel和url</h2>
+    <form action="welcome.html">
+        <label for="email">邮箱：<input type="email" name="email" id="email"></label><br>
+        <label for="tel">电话：<input type="tel" name="tel" id="tel"></label><br>
+        <label for="url">网址：<input type="url" name="url" id="url"></label><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>控制输入框内字符串格式：pattern</h2>
+    <p>pattern=正则表达式</p>
+    
+    <h2>添加提示：placeholder</h2>
+    <form action="welcome.html">
+        <label for="email">邮箱：<input type="email" name="email" id="email" placeholder="请输入正确的邮箱地址！"></label><br>
+        <label for="tel">电话：<input type="tel" name="tel" id="tel"></label><br>
+        <label for="url">网址：<input type="url" name="url" id="url" placeholder="请输入正确的网址！"></label><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>限制输入框必须填写信息：required</h2>
+    <form action="welcome.html">
+        <label for="email">邮箱：<input type="email" name="email" id="email" placeholder="请输入正确的邮箱地址！" required></label><br>
+        <label for="tel">电话：<input type="tel" name="tel" id="tel" placeholder="请输入正确的电话号码！" required></label><br>
+        <label for="url">网址：<input type="url" name="url" id="url" placeholder="请输入正确的网址！" required></label><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>设置输入框的显示长度：size</h2>
+    <form action="welcome.html">
+        <label for="email">邮箱：<input type="email" name="email" id="email" placeholder="请输入正确的邮箱地址！" required></label><br>
+        <label for="tel">电话：<input type="tel" name="tel" id="tel" placeholder="请输入正确的电话号码！" required></label><br>
+        <label for="url">网址：<input type="url" name="url" id="url" placeholder="请输入正确的网址！balabalbal" required size="30"></label><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>限制输入的最大字符数量：maxlength</h2>
+    <form action="welcome.html">
+        <label for="email">邮箱：<input type="email" name="email" id="email" placeholder="请输入正确的邮箱地址！" required></label><br>
+        <label for="tel">电话：<input type="tel" name="tel" id="tel" placeholder="请输入正确的电话号码！" required></label><br>
+        <label for="url">网址：<input type="url" name="url" id="url" placeholder="请输入正确的网址！balabalbal" required size="30" maxlength="30"></label><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <h2>为输入框提供指定的备选值：datalist元素和list属性</h2>
+    <form action="welcome.html">
+        <label for="email">邮箱：<input type="email" name="email" id="email" placeholder="请输入正确的邮箱地址！" required></label><br>
+        <label for="tel">电话：<input type="tel" name="tel" id="tel" placeholder="请输入正确的电话号码！" required></label><br>
+        <label for="url">网址：<input type="url" name="url" id="url" placeholder="请输入正确的网址！" required size="30" maxlength="30" list="urllist"></label><br>
+        <label for="submit"><input type="submit" value="提交"></label>
+    </form>
+
+    <datalist id="urllist">
+        <option value="https://shuoshuoyun.cn">博客主页</option>
+        <option value="https://pylovers.com">论坛主页</option>
+    </datalist>
+</body>
+</html>
