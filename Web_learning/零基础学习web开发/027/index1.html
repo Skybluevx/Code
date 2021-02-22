@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给图片分区赋予不同url</title>
+</head>
+<body>
+    <header>
+        <h1>map和area元素：图像映射</h1>
+    </header>
+    <main>
+        <img src="img.jpg" alt="图片显示错误！" usemap="#book">
+        <map name="book">
+            <area shape="circle" coords="10,10,10" href="https://pylovers.com" alt="图片显示错误！" target="_blank">
+        </map>
+    
+        <h1>picture元素和source元素</h1>
+        <p>提高指定图片资源的灵活度</p>
+        <picture>
+            <source media="(min-width: 512px)" srcset="img.jpg">
+            <img src="img.jpg" alt="图片显示错误！">
+        </picture>
+
+        <h1>figure元素和figcaption元素</h1>
+        <p>将图片标记为插图</p>
+        <figure>
+            <img src="img.jpg" alt="图片">
+            <figcaption>
+                好看的图片
+            </figcaption>
+        </figure>
+    </main>
+</body>
+</html>
