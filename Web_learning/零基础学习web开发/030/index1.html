@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>嵌入网页</title>
+</head>
+<body>
+<h1>嵌入网页：iframe元素</h1>
+<iframe src="https://shuoshuoyun.cn" frameborder="0" width="1024px" height="800px">抱歉，网页丢了！</iframe>
+
+<h1>嵌入百度地图</h1>
+<iframe src="https://map.baidu.com/@12989872.35,2658432.29,12z" width="1024px" height="800px">抱歉，，，</iframe>
+
+<h1>使用沙盒保护网页：sandbox属性</h1>
+<p>其值为空时，执行最为严厉的标准</p>
+<iframe src="https://shuoshuoyun.cn" width="1024px" height="800px" sandbox="">抱歉，，，</iframe>
+<br>
+<p>其可选值如下：</p>
+<br>
+<img src="img.png" alt="图片出错啦">
+
+<h1>一个范围内的值：meter元素</h1>
+<p>又到月底了，你的零花钱还剩下多少呢？</p>
+<meter class="money" id="money" high="0.8" low="0.2" optimum="0.6" value="0.2" min="0" max="1"></meter>
+<p>
+    <button type="button" value="0.1">10%</button>
+    <button type="button" value="0.6">60%</button>
+    <button type="button" value="0.9">90%</button>
+</p>
+<script>
+    var buttons = document.getElementsByTagName("BUTTON");
+    var meter = document.getElementsByClassName("MONEY");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function(e) {
+            meter.value = e.target.value;
+        };
+    }
+</script>
+
+<h1>进度条：progress元素</h1>
+<q>将数字以图像的形式来表示，max属性和value属性</q><br>
+<progress max="1" value="0.8"></progress>
+</body>
+</html>
